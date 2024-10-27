@@ -8,7 +8,7 @@ ALPHAVANTAGE_API_KEY = "YOUR KEY"
 account_sid = 'YOUR Sid'
 auth_token = 'YOUR TOKEN'
 messaging_service_sid = 'YOUR MESSING SERVICE sid'
-RECEIVER_PHONE_NO = "+917798893439"
+RECEIVER_PHONE_NO = "[Your number]"
 
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
