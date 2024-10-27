@@ -3,40 +3,38 @@ from twilio.rest import Client
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla"
-NEWS_API_KEY = "f6ce951673694ab1b49ea6aed0b4286e"
-ALPHAVANTAGE_API_KEY = "CSOAPG7D9EYMVMR2"
-account_sid = 'AC17b46fc48294752b4c85670e1ff96c3e'
-auth_token = 'b4786d5adcb29d91b7155ec84871c91b'
-messaging_service_sid = 'MGc2193eba4cde0f4f034256962bce3387'
+NEWS_API_KEY = "YOUR KEY"
+ALPHAVANTAGE_API_KEY = "YOUR KEY"
+account_sid = 'YOUR Sid'
+auth_token = 'YOUR TOKEN'
+messaging_service_sid = 'YOUR MESSING SERVICE sid'
+RECEIVER_PHONE_NO = "+917798893439"
 
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-# ALPHAVANTAGE_ENDPOINT = "https://www.alphavantage.co/query"
-# ALPHAVANTAGE_PARAMETERS = {
-#     "function": "TIME_SERIES_DAILY",
-#     "symbol": STOCK,
-#     "apikey": ALPHAVANTAGE_API_KEY
-# }
-#
-# with requests.get(url=ALPHAVANTAGE_ENDPOINT, params=ALPHAVANTAGE_PARAMETERS) as response:
-#     response.raise_for_status()
-#     stock_data = response.json()
-#
-# closing_prices_list = []
-# today_date = []
-# for (key, value) in stock_data["Time Series (Daily)"].items():
-#     closing_prices_list.append(float(value["4. close"]))
-#     today_date.append(key)
-# today_date = today_date[0]
-#
-# yesterday_close = closing_prices_list[0]
-# day_before_yesterday_close = closing_prices_list[1]
-#
-# price_difference = yesterday_close - day_before_yesterday_close
-# price_difference_perc = price_difference / yesterday_close * 100
+ALPHAVANTAGE_ENDPOINT = "https://www.alphavantage.co/query"
+ALPHAVANTAGE_PARAMETERS = {
+    "function": "TIME_SERIES_DAILY",
+    "symbol": STOCK,
+    "apikey": ALPHAVANTAGE_API_KEY
+}
 
-today_date = "2024-10-25"
-price_difference_perc = -5.61
+with requests.get(url=ALPHAVANTAGE_ENDPOINT, params=ALPHAVANTAGE_PARAMETERS) as response:
+    response.raise_for_status()
+    stock_data = response.json()
+
+closing_prices_list = []
+today_date = []
+for (key, value) in stock_data["Time Series (Daily)"].items():
+    closing_prices_list.append(float(value["4. close"]))
+    today_date.append(key)
+today_date = today_date[0]
+
+yesterday_close = closing_prices_list[0]
+day_before_yesterday_close = closing_prices_list[1]
+
+price_difference = yesterday_close - day_before_yesterday_close
+price_difference_perc = price_difference / yesterday_close * 100
 
 if price_difference_perc > 5 or price_difference_perc < 5:
     # STEP 2: Use https://newsapi.org
@@ -74,7 +72,7 @@ if price_difference_perc > 5 or price_difference_perc < 5:
         message = client.messages.create(
             messaging_service_sid= messaging_service_sid,
             body=f'{STOCK} {emoji}{abs(price_difference_perc)}%\n\n{article}',
-            to='+917798893439'
+            to=RECEIVER_PHONE_NO
         )
 
 
