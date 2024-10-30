@@ -28,7 +28,7 @@ class FlightSearch:
         endpoint = "https://test.api.amadeus.com/v2/shopping/flight-offers"
         i = 0
         to_return = []
-        while i < 4:
+        while i < 180:
             begin = datetime.datetime.now()
             check = begin + datetime.timedelta(days=i)
             date = check.strftime("%Y-%m-%d")
