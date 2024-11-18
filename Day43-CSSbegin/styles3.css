@@ -1,0 +1,15 @@
+/* #RED_HEADING{
+    color: RED;
+}
+
+#GREEN_HEADING{
+    color: green;
+}
+
+#BLUE_HEADING{
+    color: blue
+} */
+
+p[draggable="true"]{
+    color: blue;
+}
