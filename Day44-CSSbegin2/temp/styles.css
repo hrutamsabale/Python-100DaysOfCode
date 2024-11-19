@@ -1,0 +1,26 @@
+#second{
+    background-color: green;
+    padding: 100px;
+    margin: 10px;
+    border: 5px solid black
+}
+#third{
+    background-color: brown;
+    padding: 10px;
+    margin: 0px;
+    border: 5px dashed gray;
+}
+#first{
+    width: 50%;
+    border: 10px solid black;
+    padding: 10px;
+    margin: 100px 10px 10px 10px;
+}
+
+#fourth{
+    height: 300px;
+    width: 300px;
+    background-color: blue;
+    border: 0px solid black;
+    border-width: 20px;
+}
