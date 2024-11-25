@@ -4,6 +4,9 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 
+LOGIN_MAIL = "YOUR_MAIL_HERE"
+LOGIN_PASSWORD = "PASSWORD"
+
 service = ChromeService(executable_path="C:\\Users\\hruta\\.wdm\\drivers\\chromedriver\\win64\\131.0.6778.85\\chromedriver-win32\\chromedriver.exe")
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
@@ -18,8 +21,8 @@ try:
     sleep(2)
     email_input = driver.find_element(By.CSS_SELECTOR, ".text-input #base-sign-in-modal_session_key")
     password_input = driver.find_element(By.CSS_SELECTOR, ".text-input #base-sign-in-modal_session_password")
-    email_input.send_keys("keedemail@gmail.com")
-    password_input.send_keys("$the4CommaClub")
+    email_input.send_keys(LOGIN_MAIL)
+    password_input.send_keys(LOGIN_PASSWORD)
     sign_in_button1 = driver.find_element(By.XPATH, '//*[@id="base-sign-in-modal"]/div/section/div/div/form/div[2]/button')
     sign_in_button1.click()
 except:
@@ -27,8 +30,8 @@ except:
     sleep(2)
     email_input = driver.find_element(By.CSS_SELECTOR, ".text-input #session_key")
     password_input = driver.find_element(By.CSS_SELECTOR, ".text-input #session_password")
-    email_input.send_keys("keedemail@gmail.com")
-    password_input.send_keys("$the4CommaClub")
+    email_input.send_keys(LOGIN_MAIL)
+    password_input.send_keys(LOGIN_PASSWORD)
     sign_in_button1 = driver.find_element(By.XPATH, '//*[@id="main-content"]/div[1]/div[2]/form/div[2]/button')
     sign_in_button1.click()
 
