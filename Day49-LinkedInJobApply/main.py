@@ -4,10 +4,10 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 
-PHONE_NUMBER = "9999999999"
-EMAIL = "keedemail@gmail.com"
-PASSWORD = "$the4CommaClub"
-LINK = "https://www.linkedin.com/jobs/search/?currentJobId=4076052838&f_AL=true&f_WT=1&geoId=102713980&keywords=video%20editor&origin=JOB_SEARCH_PAGE_JOB_FILTER&refresh=true&spellCorrectionEnabled=true"
+PHONE_NUMBER = "[YOUR_PHONE_HERE]"
+EMAIL = "[YOUR_MAIL_HERE]"
+PASSWORD = "[YOUR_PASSWORD_HERE]"
+LINK = "[JOB_LINK_HERE]"
 
 service = ChromeService(executable_path="C:\\Users\\hruta\\.wdm\\drivers\\chromedriver\\win64\\131.0.6778.85\\chromedriver-win32\\chromedriver.exe")
 chrome_options = webdriver.ChromeOptions()
