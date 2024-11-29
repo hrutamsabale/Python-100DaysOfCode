@@ -9,7 +9,7 @@ EMAIL = "[YOUR_MAIL_HERE]"
 PASSWORD = "[YOUR_PASSWORD_HERE]"
 LINK = "[JOB_LINK_HERE]"
 
-service = ChromeService(executable_path="C:\\Users\\hruta\\.wdm\\drivers\\chromedriver\\win64\\131.0.6778.85\\chromedriver-win32\\chromedriver.exe")
+service = ChromeService(executable_path="C:\\Users\\{user}\\.wdm\\drivers\\chromedriver\\win64\\131.0.6778.85\\chromedriver-win32\\chromedriver.exe")
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(service=service, options=chrome_options)
