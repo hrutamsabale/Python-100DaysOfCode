@@ -4,35 +4,57 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 
-LOGIN_MAIL = "YOUR_MAIL_HERE"
-LOGIN_PASSWORD = "PASSWORD"
+PHONE_NUMBER = "9999999999"
+EMAIL = "keedemail@gmail.com"
+PASSWORD = "$the4CommaClub"
+LINK = "https://www.linkedin.com/jobs/search/?currentJobId=4076052838&f_AL=true&f_WT=1&geoId=102713980&keywords=video%20editor&origin=JOB_SEARCH_PAGE_JOB_FILTER&refresh=true&spellCorrectionEnabled=true"
 
 service = ChromeService(executable_path="C:\\Users\\hruta\\.wdm\\drivers\\chromedriver\\win64\\131.0.6778.85\\chromedriver-win32\\chromedriver.exe")
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-driver.get("https://www.linkedin.com/jobs/search/?currentJobId=4081835849&f_AL=true&f_WT=2&geoId=102713980&keywords=video%20editor&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true")
-sleep(2)
+to_continue = True
 
-try:
-    sign_in_button = driver.find_element(By.CSS_SELECTOR, ".sign-in-modal .sign-in-modal__outlet-btn")
-    sign_in_button.click()
-    sleep(2)
-    email_input = driver.find_element(By.CSS_SELECTOR, ".text-input #base-sign-in-modal_session_key")
-    password_input = driver.find_element(By.CSS_SELECTOR, ".text-input #base-sign-in-modal_session_password")
-    email_input.send_keys(LOGIN_MAIL)
-    password_input.send_keys(LOGIN_PASSWORD)
-    sign_in_button1 = driver.find_element(By.XPATH, '//*[@id="base-sign-in-modal"]/div/section/div/div/form/div[2]/button')
-    sign_in_button1.click()
-except:
-    sign_in_button = driver.find_element(By.XPATH, '//*[@id="main-content"]/div[1]/form/p/button')
-    sleep(2)
-    email_input = driver.find_element(By.CSS_SELECTOR, ".text-input #session_key")
-    password_input = driver.find_element(By.CSS_SELECTOR, ".text-input #session_password")
-    email_input.send_keys(LOGIN_MAIL)
-    password_input.send_keys(LOGIN_PASSWORD)
-    sign_in_button1 = driver.find_element(By.XPATH, '//*[@id="main-content"]/div[1]/div[2]/form/div[2]/button')
-    sign_in_button1.click()
+while to_continue:
+    try:
+        driver.get(LINK)
+        sleep(2)
+        sign_in_button = driver.find_element(By.CSS_SELECTOR, ".sign-in-modal .sign-in-modal__outlet-btn")
+        sign_in_button.click()
+        sleep(2)
+        email_input = driver.find_element(By.CSS_SELECTOR, ".text-input #base-sign-in-modal_session_key")
+        password_input = driver.find_element(By.CSS_SELECTOR, ".text-input #base-sign-in-modal_session_password")
+        email_input.send_keys(EMAIL)
+        password_input.send_keys(PASSWORD)
+        sign_in_button1 = driver.find_element(By.XPATH, '//*[@id="base-sign-in-modal"]/div/section/div/div/form/div[2]/button')
+        sign_in_button1.click()
+        to_continue = False
+    except:
+        driver.refresh()
 
-# driver.quit()
+sleep(5)
+all_job_listings = driver.find_elements(By.CSS_SELECTOR, "#main .plliipbnMJubKrlhVezhSdzOdCrvRaZWcTY .scaffold-layout__list-item")
+for job in all_job_listings[5:]:
+    job.click()
+    sleep(1)
+    easy_apply_button = driver.find_element(By.CSS_SELECTOR, ".jobs-s-apply .jobs-apply-button--top-card .jobs-apply-button")
+    easy_apply_button.click()
+    sleep(1)
+    try:
+        driver.find_element(By.CSS_SELECTOR, ".jobs-s-apply .jobs-apply-button").click()
+        sleep(2)
+    except:
+        pass
+    bottom_button = driver.find_element(By.CSS_SELECTOR, "footer .display-flex button")
+    if bottom_button.get_attribute("textContent").strip() != "Submit application":
+        driver.find_element(By.CSS_SELECTOR, '.artdeco-button .artdeco-button__icon use').click()
+        sleep(1)
+        driver.find_element(By.CSS_SELECTOR, '.artdeco-modal--layer-confirmation .artdeco-modal__actionbar button').click()
+        sleep(1)
+    else:
+        phone_input = driver.find_element(By.CSS_SELECTOR, '.artdeco-text-input--input')
+        bottom_button.click()
+        sleep(10)
+        driver.find_element(By.CSS_SELECTOR, ".artdeco-modal button svg use").click()
+        sleep(1)
